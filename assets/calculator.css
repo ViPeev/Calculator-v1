@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Yusei+Magic&display=swap');
+
+*,*::after,*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height:100vh;
+    overflow:hidden;
+    background: #ad5389;  /* fallback for old browsers */
+    background:fixed no-repeat -webkit-linear-gradient(#3c1053, #612449);  /* Chrome 10-25, Safari 5.1-6 */
+    background:fixed no-repeat linear-gradient(#3c1053, #612449); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    min-width:350px;
+}
+
+#container {
+    margin:15vh 18% 0 32%;
+    height:400px;
+    width:40vw;
+    display:grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: minmax(100px,auto) repeat(4, 20%);
+    grid-template-areas:
+    "input input input ."
+    "seven eight nine action"
+    "four five six action"
+    "one two three action"
+    "clear zeron equals action";
+    gap:4px;
+    transform:translateY(-700px);
+    animation: translateme 0.5s forwards;
+}
+
+@keyframes translateme {
+     100% { transform: translateY(0px);}
+}
+
+#input {
+    font-family: 'Yusei Magic', sans-serif;
+    font-size:23px;
+    font-weight:bolder;
+    
+    grid-area: input;
+    width:100%;
+    height:80%;
+    padding:10px 30px;
+    background-color:rgba(255, 255, 255, 0.5);
+    border-radius:10px;
+    word-wrap: break-word;
+    word-break: break-all;
+    color:rgb(54, 54, 54);
+    text-align:right;
+}
+
+#first-operand,#second-operand {
+    height:30%;
+    width:100%;
+    padding:10px 0;
+}
+
+button {
+    outline: none;
+    border:none;
+    border-radius:10px;
+    background: -webkit-linear-gradient(to right, #94716b7c, #b798917c);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #94716b7c, #b798917c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-size:25px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color:rgba(255, 255, 255, 0.801);
+    transition: 0.2s;
+    cursor:pointer;
+}
+
+button:active {
+    background: -webkit-linear-gradient(to left, #94716b, #b79891);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #94716b, #b79891); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-size:30px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    transform: scale(1.05);
+}
+
+/* grid-areas for each button */
+#n1 { grid-area: one;}
+#n2 {grid-area: two;}
+#n3 {grid-area: three;}
+#n4 {grid-area: four;}
+#n5 {grid-area: five;}
+#n6 {grid-area: six;}
+#n7 {grid-area: seven;}
+#n8 {grid-area: eight;}
+#n9 {grid-area: nine;}
+#n0 {grid-area: zeron;}
+#equals {grid-area: equals;}
+#clear {grid-area: clear;}
+
+/* operation container */
+#operation-select {
+    align-self:center;
+    grid-area:action;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    overflow:hidden;
+    transform:scale(0.6);
+    transition:0.5s;
+    position:relative;
+}
+
+#operation-select:hover {
+    transform:scale(0.8) rotate(405deg);
+    box-shadow: rgba(0, 0, 0, 0.123) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.operation-select-button-cont:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.operation-select-button-cont {
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    position:relative;
+    transition:0.5s;
+}
+.operation-select-button-cont button {
+    position:absolute;
+    width:160%;
+    height:160%;
+    border-radius: 0;
+    font-size:35px;
+    transform:rotate(-45deg);
+    color:white;
+    transition:0.3s;
+}
+
+.operation-select-button-cont button:hover {
+font-size:50px;
+}
+
+#plus,#minus {top:-25%;}
+#minus,#divide {right:-25%;}
+#multiple,#plus {left:-25%;}
+#divide,#multiple {bottom:-25%;}
+
+@media only screen and (max-width: 1000px) {
+#container {
+    margin:15vh auto 0 auto;
+    height:400px;
+    width:50%;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(7,1fr);
+    grid-template-areas:
+    "input input input"
+    "input input input"
+    "one two three"
+    "four five six"
+    "seven eight nine"
+    "clear zeron equals"
+    "action action action";
+    gap:0;
+    transform:translateY(-700px);
+    animation: translateme 0.5s forwards;
+}
+
+button {
+    outline: none;
+    border:none;
+    border-radius:0;
+    background: -webkit-linear-gradient(to right, #94716b7c, #b798917c);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #94716b7c, #b798917c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-size:20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    transition: 0.3s;
+    cursor:pointer;
+}
+
+#n1 { border-radius:10px 0 0 0;}
+#n3 { border-radius:0 10px 0 0;}
+#equals { border-radius: 0 0 10px 0;}
+#clear {border-radius: 0 0 0 10px;}
+
+#operation-select {
+    align-self:center;
+    grid-area:action;
+    min-width:100%;
+    height:100%;
+    border-radius:0;
+    margin-top:10px;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    overflow:auto;
+    transform:scale(1);
+    transition:0s;
+    position:relative;
+    border-radius:10px;
+}
+
+#operation-select:hover {
+    transform:scale(1) rotate(0deg);
+    box-shadow: 0 0 0 0;
+}
+
+.operation-select-button-cont:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.operation-select-button-cont {
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    position:static;
+    transition:0s;
+    float:left;
+}
+.operation-select-button-cont button {
+    position:static;
+    width:100%;
+    height:100%;
+    border-radius: 0;
+    font-size:20px;
+    transform:rotate(0deg);
+    color:white;
+    transition: font-size 0.2s;
+}
+
+.operation-select-button-cont button:hover {
+font-size:25px;
+}
+}
+
+@media only screen and (max-width:600px){
+    #container {
+        margin:10vh auto;
+        height:500px;
+        width:80%;
+    }
+}
